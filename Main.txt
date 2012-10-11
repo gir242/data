@@ -1,0 +1,196 @@
+package pl.osadkowski.LITest;
+
+import java.util.EnumSet;
+import java.util.List;
+import java.util.Set;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
+import android.os.Bundle;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.code.linkedinapi.client.LinkedInApiClient;
+import com.google.code.linkedinapi.client.LinkedInApiClientException;
+import com.google.code.linkedinapi.client.LinkedInApiClientFactory;
+import com.google.code.linkedinapi.client.enumeration.ProfileField;
+import com.google.code.linkedinapi.client.oauth.LinkedInAccessToken;
+import com.google.code.linkedinapi.client.oauth.LinkedInOAuthService;
+import com.google.code.linkedinapi.client.oauth.LinkedInOAuthServiceFactory;
+import com.google.code.linkedinapi.client.oauth.LinkedInRequestToken;
+import com.google.code.linkedinapi.schema.Connections;
+import com.google.code.linkedinapi.schema.Person;
+
+public class LITestActivity extends Activity {
+
+
+	
+    ///change keysssssssssssssssssssssssssssss!!!!!!!!!!
+	
+	public static final String CONSUMER_KEY = "d6vrv3yogisj";
+	public static final String CONSUMER_SECRET = "G2rrMl1bBAh5P72I";
+	
+	
+	static final String APP_NAME = "LITest";
+    static final String OAUTH_CALLBACK_SCHEME = "x-oauthflow-linkedin";
+    static final String OAUTH_CALLBACK_HOST = "litestcalback";
+    static final String OAUTH_CALLBACK_URL = String.format("%s://%s",
+            OAUTH_CALLBACK_SCHEME, OAUTH_CALLBACK_HOST);
+    static final String OAUTH_QUERY_TOKEN = "oauth_token";
+    static final String OAUTH_QUERY_VERIFIER = "oauth_verifier";
+    static final String OAUTH_QUERY_PROBLEM = "oauth_problem";
+
+    final LinkedInOAuthService oAuthService = LinkedInOAuthServiceFactory
+            .getInstance().createLinkedInOAuthService(CONSUMER_KEY,
+                    CONSUMER_SECRET);
+    final LinkedInApiClientFactory factory = LinkedInApiClientFactory
+            .newInstance(CONSUMER_KEY, CONSUMER_SECRET);
+
+    static final String OAUTH_PREF = "LIKEDIN_OAUTH";
+    static final String PREF_TOKEN = "token";
+    static final String PREF_TOKENSECRET = "tokenSecret";
+    static final String PREF_REQTOKENSECRET = "requestTokenSecret";
+
+    TextView tv = null;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        tv = new TextView(this);
+        setContentView(tv);
+        final SharedPreferences pref = getSharedPreferences(OAUTH_PREF,
+                MODE_PRIVATE);
+        final String token = pref.getString(PREF_TOKEN, null);
+        final String tokenSecret = pref.getString(PREF_TOKENSECRET, null);
+        if (token == null || tokenSecret == null) {
+            startAutheniticate();
+        } else {
+            showCurrentUser(new LinkedInAccessToken(token, tokenSecret));
+        }
+
+    }
+    
+    
+
+    void startAutheniticate() {
+        final LinkedInRequestToken liToken = oAuthService
+                .getOAuthRequestToken(OAUTH_CALLBACK_URL);
+        final String uri = liToken.getAuthorizationUrl();
+        getSharedPreferences(OAUTH_PREF, MODE_PRIVATE).edit()
+                .putString(PREF_REQTOKENSECRET, liToken.getTokenSecret())
+                .commit();
+        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+        startActivity(i);
+    }
+
+    void finishAuthenticate(final Uri uri) {
+        if (uri != null && uri.getScheme().equals(OAUTH_CALLBACK_SCHEME)) {
+            final String problem = uri.getQueryParameter(OAUTH_QUERY_PROBLEM);
+            if (problem == null) {
+                final SharedPreferences pref = getSharedPreferences(OAUTH_PREF,
+                        MODE_PRIVATE);
+                final LinkedInAccessToken accessToken = oAuthService
+                        .getOAuthAccessToken(
+                                new LinkedInRequestToken(uri
+                                        .getQueryParameter(OAUTH_QUERY_TOKEN),
+                                        pref.getString(PREF_REQTOKENSECRET,
+                                                null)),
+                                uri.getQueryParameter(OAUTH_QUERY_VERIFIER));
+                pref.edit()
+                        .putString(PREF_TOKEN, accessToken.getToken())
+                        .putString(PREF_TOKENSECRET,
+                                accessToken.getTokenSecret())
+                        .remove(PREF_REQTOKENSECRET).commit();
+                showCurrentUser(accessToken);
+            } else {
+                Toast.makeText(this,
+                        "Appliaction down due OAuth problem: " + problem,
+                        Toast.LENGTH_LONG).show();
+                finish();
+            }
+
+        }
+    }
+
+    void clearTokens() {
+        getSharedPreferences(OAUTH_PREF, MODE_PRIVATE).edit()
+                .remove(PREF_TOKEN).remove(PREF_TOKENSECRET)
+                .remove(PREF_REQTOKENSECRET).commit();
+    }
+
+    void showCurrentUser(final LinkedInAccessToken accessToken) {
+        final LinkedInApiClient client = factory
+                .createLinkedInApiClient(accessToken);
+        try {
+        	client.setAccessToken(accessToken);
+            final Person pp = client.getProfileForCurrentUser();
+           // Connections connections = p.getConnections();
+            //Toast.makeText(this,  pp.getFirstName() , Toast.LENGTH_SHORT).show();
+        // /////////////////////////////////////////////////////////
+        // here you can do client API calls ...
+        // client.postComment(arg0, arg1);
+        // client.updateCurrentStatus("Update hua status??");
+        // or any other API call (this sample only check for current user
+        // and shows it in TextView)
+        // /////////////////////////////////////////////////////////
+            /*Connections cc = client.getConnectionsForCurrentUser();
+
+            for(Person p :cc.getPersonList()) {
+            	 Toast.makeText(this,  p.getFirstName() , Toast.LENGTH_SHORT).show();
+                System.out.println("Industry      "+p.getIndustry());
+                System.out.println("currentStatus "+p.getCurrentStatus());
+                System.out.println("link          "+p.getPublicProfileUrl());
+                System.out.println("position      "+p.getEducations());
+                System.out.println();
+            }*/
+            final Set<ProfileField> connectionFields = EnumSet.of(ProfileField.ID, ProfileField.MAIN_ADDRESS,
+                    ProfileField.PHONE_NUMBERS, ProfileField.LOCATION,
+                    ProfileField.LOCATION_COUNTRY, ProfileField.LOCATION_NAME,
+                    ProfileField.FIRST_NAME, ProfileField.LAST_NAME, ProfileField.HEADLINE,
+                    ProfileField.INDUSTRY, ProfileField.CURRENT_STATUS,
+                    ProfileField.CURRENT_STATUS_TIMESTAMP, ProfileField.API_STANDARD_PROFILE_REQUEST,
+                    ProfileField.EDUCATIONS, ProfileField.PUBLIC_PROFILE_URL, ProfileField.POSITIONS,
+                    ProfileField.LOCATION, ProfileField.PICTURE_URL);
+            //Integer aa = connectionFields.size();
+            Connections connections = client.getConnectionsForCurrentUser(connectionFields);
+            Toast.makeText(this, "abc" , Toast.LENGTH_SHORT).show();
+            /*if(!(p.getLastName().equals("")))
+            {
+            	Intent i = new Intent(this , Home.class);
+            	startActivity(i);
+            }*/
+           // tv.setText(p.getLastName() + ", " + p.getFirstName());
+            //List<Person> pp = connections.getPersonList();
+            
+            /*int n = pp.size();
+            int i = 0;
+            /*while( i<n)
+            {
+            	Person ppp = pp.get(i);
+                String name= ppp.getFirstName();
+            	Toast.makeText(this, name , Toast.LENGTH_SHORT).show();
+            	i++;
+            }*/
+            //oAuthService.invalidateAccessToken(accessToken);
+           //clearTokens();
+        } catch (LinkedInApiClientException ex) {
+            clearTokens();
+            Toast.makeText(
+                    this,
+                    "Appliaction down due LinkedInApiClientException: "
+                            + ex.getMessage()
+                            + " Authokens cleared - try run application again.",
+                    Toast.LENGTH_LONG).show();
+            finish();
+        }
+
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        finishAuthenticate(intent.getData());
+    }
+    
+}
