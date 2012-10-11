@@ -1,0 +1,161 @@
+Waseems-iMac-3:~ abdulsattar$ git show
+commit 6a3f8b3b4adec3a3bb9fec1a7fe060e10a7d7635
+Author: Imran Rasool <abdulsattar@Waseems-iMac-3.local>
+Date:   Wed Oct 10 10:49:11 2012 +0500
+
+    $ git config --global user.name "Imran"
+    $ git config --global user.email "gir242@gmail.com"
+
+diff --git a/Desktop/Distribution Keys.zip b/Desktop/Distribution Keys.zip
+new file mode 100644
+index 0000000..5f68189
+Binary files /dev/null and b/Desktop/Distribution Keys.zip differ
+diff --git a/Desktop/Imran Practices/TableViewSuite 2/4_TableViewCellSubviews/Info.plist b/Desktop/Imran Practices/Tab
+new file mode 100644
+index 0000000..89683d0
+--- /dev/null
++++ b/Desktop/Imran Practices/TableViewSuite 2/4_TableViewCellSubviews/Info.plist       
+@@ -0,0 +1,39 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
++<plist version="1.0">
++<dict>
++       <key>CFBundleDevelopmentRegion</key>
+...skipping...
+commit 6a3f8b3b4adec3a3bb9fec1a7fe060e10a7d7635
+Author: Imran Rasool <abdulsattar@Waseems-iMac-3.local>
+Date:   Wed Oct 10 10:49:11 2012 +0500
+
+    $ git config --global user.name "Imran"
+    $ git config --global user.email "gir242@gmail.com"
+
+diff --git a/Desktop/Distribution Keys.zip b/Desktop/Distribution Keys.zip
+new file mode 100644
+index 0000000..5f68189
+Binary files /dev/null and b/Desktop/Distribution Keys.zip differ
+diff --git a/Desktop/Imran Practices/TableViewSuite 2/4_TableViewCellSubviews/Info.plist b/Desktop/Imran Practices/Tab
+new file mode 100644
+index 0000000..89683d0
+--- /dev/null
++++ b/Desktop/Imran Practices/TableViewSuite 2/4_TableViewCellSubviews/Info.plist       
+@@ -0,0 +1,39 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
++<plist version="1.0">
++<dict>
++       <key>CFBundleDevelopmentRegion</key>
++       <string>en</string>
+...skipping...
+Author: Imran Rasool <abdulsattar@Waseems-iMac-3.local>
+Date:   Wed Oct 10 10:49:11 2012 +0500
+
+    $ git config --global user.name "Imran"
+    $ git config --global user.email "gir242@gmail.com"
+
+diff --git a/Desktop/Distribution Keys.zip b/Desktop/Distribution Keys.zip
+new file mode 100644
+index 0000000..5f68189
+Binary files /dev/null and b/Desktop/Distribution Keys.zip differ
+diff --git a/Desktop/Imran Practices/TableViewSuite 2/4_TableViewCellSubviews/Info.plist b/Desktop/Imran Practices/Tab
+new file mode 100644
+index 0000000..89683d0
+--- /dev/null
++++ b/Desktop/Imran Practices/TableViewSuite 2/4_TableViewCellSubviews/Info.plist       
+@@ -0,0 +1,39 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
++<plist version="1.0">
++<dict>
++       <key>CFBundleDevelopmentRegion</key>
++       <string>en</string>
++       <key>CFBundleDisplayName</key>
++       <string>TableViewCellSubviews</string>
++       <key>CFBundleExecutable</key>
++       <string>${EXECUTABLE_NAME}</string>
++       <key>CFBundleIconFile</key>
++       <string></string>
++       <key>CFBundleIdentifier</key>
++       <string>com.yourcompany.${PRODUCT_NAME:identifier}</string>
++    <key>CFBundleIconFiles</key>
++    <array>
++               <string>Icon.png</string>
++               <string>Icon@2x.png</string>
++               <string>Icon-72.png</string>
++        <string>Icon-Small.png</string>
++        <string>Icon-Small-50.png</string>
++        <string>Icon-Small@2x.png</string>
++       </array>
++       <key>CFBundleInfoDictionaryVersion</key>
++       <string>6.0</string>
++       <key>CFBundleName</key>
++       <string>${PRODUCT_NAME}</string>
++       <key>CFBundlePackageType</key>
++       <string>APPL</string>
++       <key>CFBundleSignature</key>
++       <string>????</string>
++       <key>CFBundleVersion</key>
++       <string>2.4</string>
++       <key>LSRequiresIPhoneOS</key>
++       <true/>
++       <key>NSMainNibFile</key>
++       <string>MainWindow</string>
++</dict>
++</plist>
+
+commit 6a3f8b3b4adec3a3bb9fec1a7fe060e10a7d7635
+Author: Imran Rasool <abdulsattar@Waseems-iMac-3.local>
+Date:   Wed Oct 10 10:49:11 2012 +0500
+
+    $ git config --global user.name "Imran"
+    $ git config --global user.email "gir242@gmail.com"
+
+diff --git a/Desktop/Distribution Keys.zip b/Desktop/Distribution Keys.zip
+new file mode 100644
+index 0000000..5f68189
+Binary files /dev/null and b/Desktop/Distribution Keys.zip differ
+diff --git a/Desktop/Imran Practices/TableViewSuite 2/4_TableViewCellSubviews/Info.plist b/Desktop/Imran Practices/Tab
+new file mode 100644
+index 0000000..89683d0
+--- /dev/null
++++ b/Desktop/Imran Practices/TableViewSuite 2/4_TableViewCellSubviews/Info.plist       
+@@ -0,0 +1,39 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
++<plist version="1.0">
++<dict>
++       <key>CFBundleDevelopmentRegion</key>
++       <string>en</string>
++       <key>CFBundleDisplayName</key>
++       <string>TableViewCellSubviews</string>
++       <key>CFBundleExecutable</key>
++       <string>${EXECUTABLE_NAME}</string>
++       <key>CFBundleIconFile</key>
++       <string></string>
++       <key>CFBundleIdentifier</key>
++       <string>com.yourcompany.${PRODUCT_NAME:identifier}</string>
++    <key>CFBundleIconFiles</key>
++    <array>
++               <string>Icon.png</string>
++               <string>Icon@2x.png</string>
++               <string>Icon-72.png</string>
++        <string>Icon-Small.png</string>
++        <string>Icon-Small-50.png</string>
++        <string>Icon-Small@2x.png</string>
++       </array>
++       <key>CFBundleInfoDictionaryVersion</key>
++       <string>6.0</string>
++       <key>CFBundleName</key>
++       <string>${PRODUCT_NAME}</string>
++       <key>CFBundlePackageType</key>
++       <string>APPL</string>
++       <key>CFBundleSignature</key>
++       <string>????</string>
++       <key>CFBundleVersion</key>
++       <string>2.4</string>
++       <key>LSRequiresIPhoneOS</key>
++       <true/>
++       <key>NSMainNibFile</key>
++       <string>MainWindow</string>
++</dict>
++</plist>
+(END) 
